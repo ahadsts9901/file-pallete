@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <style>
+        img {
+            width: 5em;
+            height: 5em;
+            margin: 1em;
+            object-fit: cover;
+        }
+
+        .result {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            align-items: self-start;
+            gap: 1em;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="file" id="file" accept="image/*" />
+    <div class="result"></div>
+    <script>
+
+        let files = [];
+        function file(event) {
+            document.querySelector(".result").innerHTML = ""
+            let newFile = event.target.files[0];
+            // console.log(newFile);
+            files.push(newFile);
+            console.log(files);
+            for (let i = 0; i < files.length; i++) {
+                // console.log(files[i])
+                let img = document.createElement("img")
+                img.src = URL.createObjectURL(files[i])
+                let result = document.querySelector(".result")
+                result.appendChild(img)
+            }
+        }
+
+        const fileInput = document.getElementById('file');
+        fileInput.addEventListener('change', file);
+
+    </script>
+
+
+</body>
+
+</html>
